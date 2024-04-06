@@ -1,8 +1,8 @@
 import Paper from '../../../../components/Paper/Paper';
 import { IconArrowRight } from '../../../../components/icons/ArrowRight';
+import OpenWeatherIcon from '../../../../components/icons/OpenWeatherIcon';
 import useCurrentWeather from '../../../../hooks/useCurrentWeather';
 import { dateFormatOptions } from '../../../../utils/date';
-import { createIconFromOpenWeatherMap } from '../../../../utils/openWeatherMap';
 
 export default function CurrentWeather() {
   const { data, isLoading, error } = useCurrentWeather(10.7758439, 106.7017555);
@@ -31,13 +31,13 @@ export default function CurrentWeather() {
         {new Date().toLocaleDateString('en-US', dateFormatOptions)}
       </span>
       <div className="flex flex-wrap items-center justify-around">
-        <img
-          src={createIconFromOpenWeatherMap(data.weather[0].icon)}
-          alt="Weather Icon"
+        <OpenWeatherIcon
+          icon={data.weather[0].icon}
           width={150}
           height={150}
           className="shrink-0"
         />
+
         <div className="flex shrink-0 flex-col items-center">
           <span className="text-5xl text-black">{data.main.temp}&#176;C</span>
           <span className="font-light text-black">
