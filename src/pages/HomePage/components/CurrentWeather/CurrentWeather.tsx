@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import OpenWeatherIcon from '../../../../components/OpenWeatherIcon/OpenWeatherIcon';
+import OpenWeatherIcon from '../../../../components/OpenWeatherIcon';
 import Paper from '../../../../components/Paper/Paper';
-import { IconArrowRight } from '../../../../components/icons/IconArrowRight';
+import { IconArrowRight } from '../../../../components/icons/ArrowRight';
 import useCurrentWeather from '../../../../hooks/useCurrentWeather';
 import { capitalizeWords } from '../../../../utils/string';
 

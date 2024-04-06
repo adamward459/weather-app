@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import OpenWeatherIcon from '../../../../components/OpenWeatherIcon/OpenWeatherIcon';
+import OpenWeatherIcon from '../../../../components/OpenWeatherIcon';
 import { IForecastItem } from '../../../../hooks/useForecast';
 
 type Prop = {
