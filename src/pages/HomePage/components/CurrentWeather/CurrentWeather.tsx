@@ -10,7 +10,7 @@ export default function CurrentWeather() {
 
   if (isLoading) {
     return (
-      <Paper>
+      <Paper className="grow">
         <span className="loading loading-spinner loading-lg mx-auto block"></span>
       </Paper>
     );

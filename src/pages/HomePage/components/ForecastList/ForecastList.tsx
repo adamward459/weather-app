@@ -10,9 +10,9 @@ export default function ForecastList() {
   const forecasts = Object.values(data);
 
   return (
-    <div className="mt-5 flex grow flex-col overflow-auto">
+    <div className="mt-5 flex w-full flex-col">
       <span className="font-medium text-black"> 5-day Forecast (3 Hours)</span>
-      <Paper className="mt-3 grow overflow-auto p-0">
+      <Paper className="mt-3 h-[450px] overflow-auto p-0">
         <If condition={isLoading}>
           <Then>
             <span className="loading loading-spinner loading-lg mx-auto block"></span>

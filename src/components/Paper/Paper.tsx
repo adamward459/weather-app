@@ -10,7 +10,10 @@ type Prop = {
 export default function Paper({ children, className, level = 'md' }: Prop) {
   return (
     <div
-      className={twMerge(`rounded-lg bg-white p-4 shadow-${level}`, className)}
+      className={twMerge(
+        `w-full rounded-lg bg-white p-4 shadow-${level}`,
+        className,
+      )}
     >
       {children}
     </div>

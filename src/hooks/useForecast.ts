@@ -68,7 +68,7 @@ export default function useForecast(lat: number, lon: number) {
     getData,
   );
 
-  const result: Record<string, ForecastItem[]> = {};
+  const result: Record<string, IForecastItem[]> = {};
   if (!isLoading && data) {
     data.list.forEach((item) => {
       const date = dayjs(item.dt * 1000).format('DD MMMM');
