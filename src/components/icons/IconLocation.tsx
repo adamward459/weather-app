@@ -1,6 +1,6 @@
 // icon:icon-location | Heroicons UI https://github.com/sschoger/heroicons-ui | Steve Schoger
 
-function IconIconLocation(props: React.SVGProps<SVGSVGElement>) {
+function IconLocation(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -14,4 +14,4 @@ function IconIconLocation(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export default IconIconLocation;
+export default IconLocation;
