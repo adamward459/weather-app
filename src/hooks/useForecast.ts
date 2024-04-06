@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import useSWR from 'swr';
 import { getData } from '../services/fetcher';
 
@@ -5,11 +6,11 @@ interface ForecastResponse {
   cod: string;
   message: number;
   cnt: number;
-  list: ForecastItem[];
+  list: IForecastItem[];
   city: City;
 }
 
-interface ForecastItem {
+export interface IForecastItem {
   dt: number;
   main: {
     temp: number;
@@ -67,8 +68,19 @@ export default function useForecast(lat: number, lon: number) {
     getData,
   );
 
+  const result: Record<string, ForecastItem[]> = {};
+  if (!isLoading && data) {
+    data.list.forEach((item) => {
+      const date = dayjs(item.dt * 1000).format('DD MMMM');
+      if (!result[date]) {
+        result[date] = [];
+      }
+      result[date].push(item);
+    });
+  }
+
   return {
-    data: data as ForecastResponse,
+    data: result,
     isLoading,
     error,
   };

@@ -1,8 +1,8 @@
+import dayjs from 'dayjs';
 import Paper from '../../../../components/Paper/Paper';
 import { IconArrowRight } from '../../../../components/icons/ArrowRight';
 import OpenWeatherIcon from '../../../../components/icons/OpenWeatherIcon';
 import useCurrentWeather from '../../../../hooks/useCurrentWeather';
-import { dateFormatOptions } from '../../../../utils/date';
 import { capitalizeWords } from '../../../../utils/string';
 
 export default function CurrentWeather() {
@@ -24,12 +24,10 @@ export default function CurrentWeather() {
     );
   }
 
-  console.log(data);
-
   return (
     <Paper>
       <span className="font-light text-black">
-        {new Date().toLocaleDateString('en-US', dateFormatOptions)}
+        {dayjs().format('MMMM DD, YYYY')}
       </span>
       <div className="flex flex-wrap items-center justify-around">
         <OpenWeatherIcon

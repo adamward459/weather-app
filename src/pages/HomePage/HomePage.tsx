@@ -1,5 +1,5 @@
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
-import ForecastList from './components/Forecast/ForecastList';
+import ForecastList from './components/ForecastList/ForecastList';
 
 export default function HomePage() {
   return (

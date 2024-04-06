@@ -13,6 +13,7 @@
     "test": "dotenv -e .env.test -- vitest --run --coverage"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
     "dotenv-cli": "^7.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
