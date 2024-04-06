@@ -1,4 +1,3 @@
-import { Else, If, Then } from 'react-if';
 import Paper from '../../../../components/Paper/Paper';
 import useForecast from '../../../../hooks/useForecast';
 import Forecast from './Forecast';
@@ -13,25 +12,16 @@ export default function ForecastList() {
     <div className="mt-5 flex w-full flex-col">
       <span className="font-medium text-black"> 5-day Forecast (3 Hours)</span>
       <Paper className="mt-3 h-[450px] overflow-auto p-0">
-        <If condition={isLoading}>
-          <Then>
-            <span className="loading loading-spinner loading-lg mx-auto block"></span>
-          </Then>
-          <Else>
-            <If condition={!!error}>
-              <Then>
-                <span className="text-red-500">Failed to fetch data</span>
-              </Then>
-              <Else>
-                {days.map((day, index) => {
-                  return (
-                    <Forecast key={day} day={day} items={forecasts[index]} />
-                  );
-                })}
-              </Else>
-            </If>
-          </Else>
-        </If>
+        {isLoading && (
+          <span className="loading loading-spinner loading-lg mx-auto block"></span>
+        )}
+        {Boolean(error) && (
+          <span className="text-red-500">Failed to fetch data</span>
+        )}
+        {days.length > 0 &&
+          days.map((day, index) => {
+            return <Forecast key={day} day={day} items={forecasts[index]} />;
+          })}
       </Paper>
     </div>
   );
