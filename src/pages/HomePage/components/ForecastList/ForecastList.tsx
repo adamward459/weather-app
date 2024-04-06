@@ -12,7 +12,7 @@ export default function ForecastList() {
   return (
     <div className="mt-5 flex grow flex-col overflow-auto">
       <span className="font-medium text-black"> 5-day Forecast (3 Hours)</span>
-      <Paper className="mt-3 grow overflow-auto">
+      <Paper className="mt-3 grow overflow-auto p-0">
         <If condition={isLoading}>
           <Then>
             <span className="loading loading-spinner loading-lg mx-auto block"></span>
