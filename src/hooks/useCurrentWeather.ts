@@ -48,10 +48,7 @@ export default function useCurrentWeather(lat: number, lon: number) {
     CurrentWeatherResponse,
     Error,
     string
-  >(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`,
-    getData,
-  );
+  >(`/api/data/2.5/weather?lat=${lat}&lon=${lon}`, getData);
 
   return {
     data: data as CurrentWeatherResponse,
