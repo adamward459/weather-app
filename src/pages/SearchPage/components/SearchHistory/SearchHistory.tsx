@@ -29,7 +29,7 @@ export default function SearchHistory() {
   );
 
   return (
-    <div className="mt-5 flex w-full flex-col">
+    <div className="mt-5 flex w-full flex-col ">
       <span className="font-medium text-black"> Search History</span>
       <Paper className="mt-3 max-h-[450px] overflow-auto p-0">
         {history.length === 0 && (

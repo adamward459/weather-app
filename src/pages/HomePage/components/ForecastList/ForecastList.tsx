@@ -15,7 +15,7 @@ export default function ForecastList() {
   const forecasts = Object.values(data);
 
   return (
-    <div className="mt-5 flex w-full flex-col">
+    <div className="mt-5 flex w-full min-w-[300px] flex-col">
       <span className="font-medium text-black"> 5-day Forecast (3 Hours)</span>
       <Paper className="mt-3 h-[450px] overflow-auto p-0">
         {isLoading && (

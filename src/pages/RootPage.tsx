@@ -16,7 +16,7 @@ export default function RootPage() {
   return (
     <div className="min-h-screen bg-blue-100">
       <nav className="bg-white">
-        <label className="input input-bordered mx-auto flex w-1/3 items-center gap-2 border-none bg-white px-0">
+        <label className="input input-bordered mx-auto flex w-1/3 min-w-[300px] items-center gap-2 border-none bg-white px-0">
           <IconLocation className="fill-black" />
           <input
             value={selectedGeo?.name}

@@ -16,7 +16,7 @@ export default function CurrentWeather() {
 
   if (isLoading) {
     return (
-      <Paper>
+      <Paper className="min-w-[300px]">
         <span className="loading loading-spinner loading-lg mx-auto block"></span>
       </Paper>
     );
@@ -24,14 +24,14 @@ export default function CurrentWeather() {
 
   if (error) {
     return (
-      <Paper>
+      <Paper className="min-w-[300px]">
         <span className="text-red-500">Failed to fetch data</span>
       </Paper>
     );
   }
 
   return (
-    <Paper>
+    <Paper className="min-w-[300px]">
       <span className="font-light text-black">
         {dayjs().format('MMMM DD, YYYY')}
       </span>

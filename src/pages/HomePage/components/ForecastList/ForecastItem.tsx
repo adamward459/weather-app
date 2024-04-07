@@ -8,11 +8,11 @@ type Prop = {
 
 export default function ForecastItem({ item }: Prop) {
   return (
-    <div className="flex items-center justify-between gap-6">
-      <span className="font-medium text-black">
+    <div className="flex flex-wrap items-center justify-between gap-6">
+      <span className=" font-medium text-black">
         {dayjs(item.dt).format('HH:MM')}
       </span>
-      <div className="flex grow items-center">
+      <div className="flex grow flex-wrap items-center">
         <OpenWeatherIcon
           icon={item.weather[0].icon}
           width={50}
