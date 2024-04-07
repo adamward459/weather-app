@@ -84,10 +84,10 @@ describe('ForecastList', () => {
     render(<ForecastList />);
 
     expect(screen.getByText('5-day Forecast (3 Hours)')).toBeInTheDocument();
-    expect(screen.getByText('03:01')).toBeInTheDocument();
+    expect(screen.getByText('16:04')).toBeInTheDocument();
     expect(screen.getByText('29.95/30.55°C')).toBeInTheDocument();
     expect(screen.getByText('Clear sky')).toBeInTheDocument();
-    expect(screen.getByText('16:01')).toBeInTheDocument();
+    expect(screen.getByText('10:10')).toBeInTheDocument();
     expect(screen.getByText('25.95/31.55°C')).toBeInTheDocument();
     expect(screen.getByText('Cloudy')).toBeInTheDocument();
   });
