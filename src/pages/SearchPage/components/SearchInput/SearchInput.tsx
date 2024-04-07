@@ -1,7 +1,7 @@
 import { Combobox } from '@headlessui/react';
 import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { geoHistoryAtom } from '../../../../atoms/geoHistoryAtom';
 import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
@@ -17,13 +17,10 @@ export default function SearchInput() {
   const setSelectedGetAtom = useSetAtom(selectedGeoAtom);
   const setGeoHistory = useSetAtom(geoHistoryAtom);
   const navigate = useNavigate();
+  const comboBoxButton = useRef<HTMLButtonElement>(null);
 
-  const onInputChange = useCallback(
+  const search = useCallback(
     async (value: string) => {
-      setInputValue(value);
-      setOptions([]);
-      setError(null);
-
       try {
         const result = await trigger({ q: value, limit: 5 });
         if (result.length > 0) {
@@ -36,6 +33,16 @@ export default function SearchInput() {
       }
     },
     [trigger],
+  );
+
+  const onInputChange = useCallback(
+    async (value: string) => {
+      setInputValue(value);
+      setOptions([]);
+      setError(null);
+      await search(value);
+    },
+    [search],
   );
 
   const onSelectValue = useCallback(
@@ -53,6 +60,14 @@ export default function SearchInput() {
     [navigate, setGeoHistory, setSelectedGetAtom],
   );
 
+  const onInputFocus = useCallback(async () => {
+    if (inputValue.length > 0) {
+      await search(inputValue);
+    }
+
+    comboBoxButton.current?.click();
+  }, [inputValue, search]);
+
   return (
     <>
       <Combobox value={inputValue} onChange={onSelectValue}>
@@ -60,13 +75,14 @@ export default function SearchInput() {
           className="input h-auto w-full bg-white p-1"
           placeholder="Search country, or city here..."
           onChange={debounce((event) => onInputChange(event.target.value), 500)}
+          onFocus={onInputFocus}
         />
         {error && <span className="text-red-500">{error}</span>}
         {options.length > 0 && (
           <Combobox.Options className="mt-1 w-full rounded-md bg-white p-1">
             {options.map((opt) => (
               <Combobox.Option
-                key={opt.name}
+                key={opt.lat + ',' + opt.lon}
                 value={JSON.stringify(opt)}
                 className="ui-active:bg-blue-200 rounded-sm p-1 text-black"
               >
@@ -75,6 +91,9 @@ export default function SearchInput() {
             ))}
           </Combobox.Options>
         )}
+        <Combobox.Button ref={comboBoxButton} className={'hidden'}>
+          Submit
+        </Combobox.Button>
       </Combobox>
     </>
   );
