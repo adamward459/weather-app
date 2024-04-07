@@ -1,3 +1,5 @@
+import { trackError } from '../utils/error';
+
 export async function getData<Data, Key extends string>(
   url: Key,
 ): Promise<Data> {
@@ -13,6 +15,7 @@ export async function getData<Data, Key extends string>(
     return await response.json();
   } catch (error) {
     console.error('Error fetching data:', error);
+    trackError(error as Error);
     throw error;
   }
 }
@@ -39,6 +42,7 @@ export async function getDataWithArgs<
     return await response.json();
   } catch (error) {
     console.error('Error fetching data:', error);
+    trackError(error as Error);
     throw error;
   }
 }

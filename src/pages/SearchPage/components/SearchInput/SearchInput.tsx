@@ -8,6 +8,7 @@ import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import useGeoCoding, {
   GeoCodingResponse,
 } from '../../../../hooks/useGeoCoding';
+import { trackError } from '../../../../utils/error';
 
 export default function SearchInput() {
   const [error, setError] = useState<string | null>(null);
@@ -30,6 +31,7 @@ export default function SearchInput() {
         }
       } catch (error) {
         setError('Invalid country or city');
+        trackError(error as Error);
       }
     },
     [trigger],
