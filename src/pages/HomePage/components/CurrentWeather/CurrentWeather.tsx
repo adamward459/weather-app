@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import OpenWeatherIcon from '../../../../components/OpenWeatherIcon/OpenWeatherIcon';
 import Paper from '../../../../components/Paper/Paper';
-import { IconArrowRight } from '../../../../components/icons/ArrowRight';
+import IconArrowRight from '../../../../components/icons/IconArrowRight';
 import useCurrentWeather from '../../../../hooks/useCurrentWeather';
 import { capitalizeWords } from '../../../../utils/string';
 

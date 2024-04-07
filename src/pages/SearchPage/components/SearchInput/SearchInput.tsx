@@ -3,6 +3,7 @@ import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { geoHistoryAtom } from '../../../../atoms/geoHistoryAtom';
 import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import useGeoCoding, {
   GeoCodingResponse,
@@ -14,6 +15,7 @@ export default function SearchInput() {
   const [options, setOptions] = useState<GeoCodingResponse[]>([]);
   const { trigger } = useGeoCoding();
   const setSelectedGetAtom = useSetAtom(selectedGeoAtom);
+  const setGeoHistory = useSetAtom(geoHistoryAtom);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,9 +47,14 @@ export default function SearchInput() {
       const json = JSON.parse(value as string) as GeoCodingResponse;
       setInputValue(json.name);
       setSelectedGetAtom(json);
+      setGeoHistory((prev) => {
+        const newHistory = prev.filter((item) => item.name !== json.name);
+        newHistory.unshift(json);
+        return newHistory;
+      });
       navigate('/');
     },
-    [setSelectedGetAtom],
+    [navigate, setGeoHistory, setSelectedGetAtom],
   );
 
   return (

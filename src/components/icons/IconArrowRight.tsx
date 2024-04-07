@@ -1,4 +1,4 @@
-export function IconArrowRight(props: React.SVGProps<SVGSVGElement>) {
+export default function IconArrowRight(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       fill="currentColor"
