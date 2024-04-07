@@ -1,6 +1,9 @@
 import { Combobox } from '@headlessui/react';
+import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import useGeoCoding, {
   GeoCodingResponse,
 } from '../../../../hooks/useGeoCoding';
@@ -10,37 +13,46 @@ export default function SearchInput() {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<GeoCodingResponse[]>([]);
   const { trigger } = useGeoCoding();
+  const setSelectedGetAtom = useSetAtom(selectedGeoAtom);
+  const navigate = useNavigate();
 
   useEffect(() => {
     trigger({ q: 'London' });
   }, [trigger]);
 
-  const onInputChange = async (value: string) => {
-    setInputValue(value);
-    setOptions([]);
-    setError(null);
+  const onInputChange = useCallback(
+    async (value: string) => {
+      setInputValue(value);
+      setOptions([]);
+      setError(null);
 
-    try {
-      const result = await trigger({ q: value });
-      if (result.length > 0) {
-        setOptions(result);
-      } else {
+      try {
+        const result = await trigger({ q: value });
+        if (result.length > 0) {
+          setOptions(result);
+        } else {
+          setError('Invalid country or city');
+        }
+      } catch (error) {
         setError('Invalid country or city');
       }
-    } catch (error) {
-      setError('Invalid country or city');
-    }
-  };
+    },
+    [trigger],
+  );
+
+  const onSelectValue = useCallback(
+    (value: string) => {
+      const json = JSON.parse(value as string) as GeoCodingResponse;
+      setInputValue(json.name);
+      setSelectedGetAtom(json);
+      navigate('/');
+    },
+    [setSelectedGetAtom],
+  );
 
   return (
     <>
-      <Combobox
-        value={inputValue}
-        onChange={(value) => {
-          const json = JSON.parse(value as string) as GeoCodingResponse;
-          setInputValue(json.name);
-        }}
-      >
+      <Combobox value={inputValue} onChange={onSelectValue}>
         <Combobox.Input
           className="input h-auto w-full bg-white p-1"
           placeholder="Search country, or city here..."

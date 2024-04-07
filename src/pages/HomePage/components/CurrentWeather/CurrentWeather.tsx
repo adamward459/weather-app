@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { useAtomValue } from 'jotai';
+import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import OpenWeatherIcon from '../../../../components/OpenWeatherIcon/OpenWeatherIcon';
 import Paper from '../../../../components/Paper/Paper';
 import { IconArrowRight } from '../../../../components/icons/ArrowRight';
@@ -6,7 +8,11 @@ import useCurrentWeather from '../../../../hooks/useCurrentWeather';
 import { capitalizeWords } from '../../../../utils/string';
 
 export default function CurrentWeather() {
-  const { data, isLoading, error } = useCurrentWeather(10.7758439, 106.7017555);
+  const selectedGeo = useAtomValue(selectedGeoAtom);
+  const { data, isLoading, error } = useCurrentWeather(
+    selectedGeo.lat,
+    selectedGeo.lon,
+  );
 
   if (isLoading) {
     return (

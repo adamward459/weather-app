@@ -1,9 +1,15 @@
+import { useAtomValue } from 'jotai';
+import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
 import Paper from '../../../../components/Paper/Paper';
 import useForecast from '../../../../hooks/useForecast';
 import Forecast from './Forecast';
 
 export default function ForecastList() {
-  const { data, isLoading, error } = useForecast(10.7758439, 106.7017555);
+  const selectedGeo = useAtomValue(selectedGeoAtom);
+  const { data, isLoading, error } = useForecast(
+    selectedGeo.lat,
+    selectedGeo.lon,
+  );
 
   const days = Object.keys(data);
   const forecasts = Object.values(data);
