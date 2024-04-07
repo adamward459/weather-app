@@ -16,3 +16,14 @@ npm install -f
 ```sh
 npm run dev
 ```
+
+### Run tests
+
+```sh
+npm run test
+```
+
+### Screen shots
+
+![alt text](./screenshots/home-page.png)
+![alt text](./screenshots/search-page.png)
