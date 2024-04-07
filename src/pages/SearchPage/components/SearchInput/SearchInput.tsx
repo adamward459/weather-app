@@ -1,7 +1,9 @@
 import { Combobox } from '@headlessui/react';
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
-import useGeoCoding, { GeoCodingResponse } from '../../hooks/useGeoCoding';
+import useGeoCoding, {
+  GeoCodingResponse,
+} from '../../../../hooks/useGeoCoding';
 
 export default function SearchInput() {
   const [error, setError] = useState<string | null>(null);
