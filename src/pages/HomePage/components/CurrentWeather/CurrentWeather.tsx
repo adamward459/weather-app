@@ -17,7 +17,10 @@ export default function CurrentWeather() {
   if (isLoading) {
     return (
       <Paper className="min-w-[300px]">
-        <span className="loading loading-spinner loading-lg mx-auto block"></span>
+        <span
+          data-testid="loading-spinner"
+          className="loading loading-spinner loading-lg mx-auto block"
+        ></span>
       </Paper>
     );
   }
