@@ -1,7 +1,7 @@
 import useSWRMutation from 'swr/mutation';
 import { getDataWithArgs } from '../services/fetcher';
 
-interface GeoCodingResponse {
+export interface GeoCodingResponse {
   name: string;
   lat: number;
   lon: number;
@@ -11,7 +11,7 @@ interface GeoCodingResponse {
 
 export default function useGeoCoding() {
   const { data, isMutating, error, trigger } = useSWRMutation<
-    GeoCodingResponse,
+    GeoCodingResponse[],
     Error,
     string,
     { q: string }

@@ -15,7 +15,7 @@ describe('useGeoCoding', () => {
     };
 
     (useSWRMutation as Mock).mockReturnValue({
-      data: mockData,
+      data: [mockData],
       isMutating: false,
       error: undefined,
       trigger: vi.fn(),
@@ -23,7 +23,7 @@ describe('useGeoCoding', () => {
 
     const { result } = renderHook(() => useGeoCoding());
 
-    expect(result.current.data).toEqual(mockData);
+    expect(result.current.data).toEqual([mockData]);
     expect(result.current.isMutating).toBe(false);
     expect(result.current.error).toBeUndefined();
   });
