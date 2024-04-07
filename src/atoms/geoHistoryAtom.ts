@@ -1,4 +1,9 @@
-import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { GeoCodingResponse } from '../hooks/useGeoCoding';
+import { storage } from '../utils/storage';
 
-export const geoHistoryAtom = atom<GeoCodingResponse[]>([]);
+export const geoHistoryAtom = atomWithStorage<GeoCodingResponse[]>(
+  'geoHistory',
+  [],
+  storage,
+);

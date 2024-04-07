@@ -6,4 +6,4 @@ export function getEnv(key: string): string {
   return value as string;
 }
 
-export const openWeatherMapApiKey = getEnv('VITE_OPEN_WEATHER_MAP_API_KEY');
+export const storageKey = getEnv('VITE_STORAGE_KEY');
