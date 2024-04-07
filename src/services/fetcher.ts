@@ -31,7 +31,7 @@ export async function getDataWithArgs<
       queryString += `&${key}=${value}`;
     }
 
-    const response = await fetch(`${url}?${queryString}`, {
+    const response = await fetch(`${url}?${queryString.replace('&', '')}`, {
       method: 'GET',
     });
 
