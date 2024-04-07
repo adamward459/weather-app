@@ -40,6 +40,7 @@ export default function SearchHistory() {
             <div
               key={index}
               className="flex cursor-pointer items-center justify-between p-2"
+              role="listitem"
             >
               <span className="text-black">{item.name}</span>
               <div className="flex gap-3">
@@ -47,9 +48,11 @@ export default function SearchHistory() {
                   className="fill-black"
                   width={20}
                   height={20}
+                  data-testid="search-icon"
                   onClick={() => onSelectGeo(item)}
                 />
                 <IconTrash
+                  data-testid="delete-icon"
                   className="fill-black"
                   width={20}
                   height={20}
