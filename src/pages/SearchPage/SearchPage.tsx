@@ -3,19 +3,11 @@ import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 import useGeoCoding, { GeoCodingResponse } from '../../hooks/useGeoCoding';
 
-const people = [
-  'Durward Reynolds',
-  'Kenton Towne',
-  'Therese Wunsch',
-  'Benedict Kessler',
-  'Katelyn Rohan',
-];
 export default function SearchPage() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
   const [error, setError] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<GeoCodingResponse[]>([]);
-  const { trigger, data, isMutating } = useGeoCoding();
+  const { trigger } = useGeoCoding();
 
   useEffect(() => {
     trigger({ q: 'London' });
@@ -34,7 +26,7 @@ export default function SearchPage() {
         setError('Invalid country or city');
       }
     } catch (error) {
-      setError('Failed to fetch data');
+      setError('Invalid country or city');
     }
   };
 
