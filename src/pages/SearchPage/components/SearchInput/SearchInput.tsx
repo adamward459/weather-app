@@ -14,7 +14,7 @@ export default function SearchInput() {
   const [error, setError] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<GeoCodingResponse[]>([]);
-  const { trigger } = useGeoCoding();
+  const { trigger, isMutating } = useGeoCoding();
   const setSelectedGetAtom = useSetAtom(selectedGeoAtom);
   const setGeoHistory = useSetAtom(geoHistoryAtom);
   const navigate = useNavigate();
@@ -80,7 +80,12 @@ export default function SearchInput() {
           onFocus={onInputFocus}
         />
         {error && <span className="text-red-500">{error}</span>}
-        {options.length > 0 && (
+        {isMutating && (
+          <span className="loading loading-spinner loading-md inline-block pt-2">
+            Loading...
+          </span>
+        )}
+        {!isMutating && !error && options.length > 0 && (
           <Combobox.Options className="mt-1 w-full rounded-md bg-white p-1">
             {options.map((opt) => (
               <Combobox.Option
