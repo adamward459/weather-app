@@ -1,7 +1,7 @@
 import { Combobox } from '@headlessui/react';
 import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { geoHistoryAtom } from '../../../../atoms/geoHistoryAtom';
 import { selectedGeoAtom } from '../../../../atoms/selectedGeoAtom';
@@ -18,10 +18,6 @@ export default function SearchInput() {
   const setGeoHistory = useSetAtom(geoHistoryAtom);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    trigger({ q: 'London' });
-  }, [trigger]);
-
   const onInputChange = useCallback(
     async (value: string) => {
       setInputValue(value);
@@ -29,7 +25,7 @@ export default function SearchInput() {
       setError(null);
 
       try {
-        const result = await trigger({ q: value });
+        const result = await trigger({ q: value, limit: 5 });
         if (result.length > 0) {
           setOptions(result);
         } else {

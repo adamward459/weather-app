@@ -27,6 +27,7 @@ export async function getDataWithArgs<
     for (const [key, value] of Object.entries(arg)) {
       queryString += `&${key}=${value}`;
     }
+    console.log(queryString);
     const response = await fetch(`${url}?${queryString}`, {
       method: 'GET',
     });

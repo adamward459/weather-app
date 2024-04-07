@@ -14,7 +14,7 @@ export default function useGeoCoding() {
     GeoCodingResponse[],
     Error,
     string,
-    { q: string }
+    { q: string; limit?: number }
   >(`/api/geo/1.0/direct`, getDataWithArgs);
 
   return {
