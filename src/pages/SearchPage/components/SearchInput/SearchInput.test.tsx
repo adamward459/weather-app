@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchInput from './SearchInput';
 
-vi.mock('../../hooks/useGeoCoding', () => ({
+vi.mock('../../../../hooks/useGeoCoding.ts', () => ({
   __esModule: true,
   default: () => ({
     trigger: vi.fn(),
