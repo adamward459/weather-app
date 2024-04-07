@@ -34,7 +34,13 @@ export default function SearchInput() {
 
   return (
     <>
-      <Combobox value={inputValue}>
+      <Combobox
+        value={inputValue}
+        onChange={(value) => {
+          const json = JSON.parse(value as string) as GeoCodingResponse;
+          setInputValue(json.name);
+        }}
+      >
         <Combobox.Input
           className="input h-auto w-full bg-white p-1"
           placeholder="Search country, or city here..."
@@ -46,7 +52,7 @@ export default function SearchInput() {
             {options.map((opt) => (
               <Combobox.Option
                 key={opt.name}
-                value={opt.lat + ',' + opt.lon}
+                value={JSON.stringify(opt)}
                 className="ui-active:bg-blue-200 rounded-sm p-1 text-black"
               >
                 {opt.name}
