@@ -64,7 +64,7 @@ describe('useForecast', () => {
         sunset: 1629399600,
       },
     };
-    (useSWR as Mock).mockImplementation((key, fetcher) => {
+    (useSWR as Mock).mockImplementation((key) => {
       if (key === `/api/data/2.5/forecast?lat=${lat}&lon=${lon}`) {
         return {
           data: mockData,

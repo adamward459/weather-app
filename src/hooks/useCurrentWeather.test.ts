@@ -43,7 +43,7 @@ describe('useCurrentWeather', () => {
     };
 
     // Mock the useSWR hook
-    (useSWR as Mock).mockImplementation((key, fetcher) => {
+    (useSWR as Mock).mockImplementation((key) => {
       if (key === `/api/data/2.5/weather?lat=${lat}&lon=${lon}`) {
         return {
           data: mockData,
